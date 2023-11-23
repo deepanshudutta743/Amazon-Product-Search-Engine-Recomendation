@@ -14,13 +14,8 @@ df=pd.DataFrame(movie_dict)
 
 def tokenize_stem(text):
     tokens = nltk.word_tokenize(text.lower())
-    stem = [stemmer.stem(w) for w in tokens]
     return " ".join(stem)
 tfidvectorizer = TfidfVectorizer(tokenizer=tokenize_stem)
-
-def cosine_sim(txt1,txt2):
-    tfid_matrix = tfidvectorizer.fit_transform([txt1,txt2])
-    return cosine_similarity(tfid_matrix)[0][1]
 
 def search_product(query):
     stemmed_query = tokenize_stem(query)
